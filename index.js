@@ -60,7 +60,7 @@ async function sendMail( reciever, template ) {
             service: 'gmail',
             auth: {
                 type: 'OAuth2',
-                user: 'booocj@gmail.com',
+                user: process.env.MYEMAIL,
                 clientId: CLIENT_ID,
                 clientSecret: CLIENT_SECRET,
                 refreshToken: REFRESH_TOKEN,
@@ -70,7 +70,7 @@ async function sendMail( reciever, template ) {
 
 
         const mailOptions = {
-            from: "Boo <booocj@gmail.com>",
+            from: `Peter Sparrow <${process.env.MYEMAIL}>`,
             to: reciever,
             subject: "Portfolio Contact Submition",
             text: template,
@@ -89,9 +89,9 @@ app.get('/test', (req,res) => res.send("this is test!"))
 
 app.post("/sendMail", ( req, res) => {
     const { name, email, message } = req.body
-    sendMail('piotrekwrobel93@gmail.com', mailTemaplate(name, message, email)).then( res => console.log("EMAIL SENTO TO MYSELF WITH DETAILS --------- [SENT]", res))
+    sendMail(process.env.__EMAIL__, mailTemaplate(name, message, email)).then( res => console.log("EMAIL SENTO TO MYSELF WITH DETAILS --------- [SENT]", res))
 
-    sendMail(email, confirmationTemplate( name )).then( res => console.log("EMAIL SENT TO CONTACT PERSON WITH CONFIRMATION --------- [SENT]"), res)
+    sendMail(email, confirmationTemplate( name )).then( res => console.log("EMAIL SENT TO CONTACT PERSON WITH CONFIRMATION --------- [SENT]", res))
     res.send({message: "mail is sended!"})
 })
 
