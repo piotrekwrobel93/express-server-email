@@ -60,7 +60,7 @@ async function sendMail( reciever, template ) {
             service: 'gmail',
             auth: {
                 type: 'OAuth2',
-                user: process.env.EMAIL,
+                user: process.env.MYEMAIL || 'booocj@gmail.com',
                 clientId: CLIENT_ID,
                 clientSecret: CLIENT_SECRET,
                 refreshToken: REFRESH_TOKEN,
