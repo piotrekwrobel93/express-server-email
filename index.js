@@ -85,6 +85,7 @@ async function sendMail( reciever, template ) {
 }
 
 app.get('/', (req, res) => res.send("hello there :)"))
+app.get('/test', (req,res) => res.send("this is test!"))
 
 app.post("/sendMail", ( req, res) => {
     const { name, email, message } = req.body
