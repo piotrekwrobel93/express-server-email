@@ -54,7 +54,6 @@ const confirmationTemplate = ( name ) =>  `
 `
 
 async function sendMail( reciever, template ) {
-    try {
         const ACCESS_TOKEN = await oAuth2Client.getAccessToken()
         const transport = nodemailer.createTransport({
             service: 'gmail',
@@ -79,9 +78,6 @@ async function sendMail( reciever, template ) {
 
         const mailResult = await transport.sendMail( mailOptions )
         return mailResult
-    } catch ( err ) {
-        return err
-    }
 }
 
 app.get('/', (req, res) => res.send("hello there :)"))
@@ -89,10 +85,15 @@ app.get('/test', (req,res) => res.send("this is test!"))
 
 app.post("/sendMail", ( req, res) => {
     const { name, email, message } = req.body
-    sendMail(process.env.__EMAIL__, mailTemaplate(name, message, email)).then( res => console.log("EMAIL SENTO TO MYSELF WITH DETAILS --------- [SENT]", res))
 
-    sendMail(email, confirmationTemplate( name )).then( res => console.log("EMAIL SENT TO CONTACT PERSON WITH CONFIRMATION --------- [SENT]", res))
-    res.send({message: "mail is sended!"})
+    try {
+        sendMail(process.env.__EMAIL__, mailTemaplate(name, message, email)).then( res => console.log("EMAIL SENTO TO MYSELF WITH DETAILS --------- [SENT]", res))
+        sendMail(email, confirmationTemplate( name )).then( res => console.log("EMAIL SENT TO CONTACT PERSON WITH CONFIRMATION --------- [SENT]", res))
+        res.send({message: "email sended!", status: 200}).status(200)
+    } catch(err) {
+        res.send({message: "There was an error", status: 400}).status(400)
+    }
+
 })
 
 
