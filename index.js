@@ -33,32 +33,25 @@ const mailTemaplate =  ( name, message, email) => `
 `
 
 const confirmationTemplate = ( name ) =>  `
-<div id="email" style="margin: 0;padding: 0;box-sizing: border-box;width: 100%;height: 100vh;text-align: center;font-family: 'Segoe UI', sans-serif;font-size: 20px;background-color: rgb(8, 8, 9);color: #fff;display: flex;justify-content: center;align-items: center;flex-direction: column;position: relative;">
-        <h2 style="margin: 0;padding: 0;box-sizing: border-box;">Thank you for contacting me ${ name }</h2>
-        <p style="margin: 0;padding: 0;box-sizing: border-box;">I recived you message :)</p>
-
-    </div>
-`
-{/* <img width="100" height="100" src="https://lh3.googleusercontent.com/proxy/g_FbLSiP10bvXVcdCpX_Zesl9_6Q5QHQw87Q4Ktm7jO3vnXqnj1DCZ2nzrZQWr2cxmRdV8_YxR2fFjvpgGkTJOXVf20gw145G5yEhMhUgMl35JUv-37yO1nAmH6ekQeMEi3ttuYm9TNfGnjHlgGjx6Au1oqHaRQSAqGksZ3W" alt="sparrow" />
-<h4 style="color:  #ff3e00">Peter Sparrow Portfolio</h4>
 <br />
 <h1 style="padding: 10px 0">Thank you  <span style="text-transform: uppercase">${name}</span>! I got your message</h1>
 I will be back to you as soon as possible <br />
-If you could let me know how did you like my portfolio <a href="#" style="color: #ff3e00;">here.</a>
-<br />
+If you could let me know how did you like my portfolio <a href="#" style="color: #ff3e00;">here.</a> <br />
 See you soon!
 <br />
-<br />
-<br />
-Website: https://peter-sparrow.dev
-<br />
+<h4 style="color:  #ff3e00">Peter Sparrow Portfolio</h4>
+    <br />
+    <br />
+    Website: https://peter-sparrow.dev
+    <br />
 
-Email: piotrekwrobel93@gmail.com
-<br />
+    Email: piotrekwrobel93@gmail.com
+    <br />
 
-Telephone: 07412 290 264
-<br />
-Github: https://github.com/piotrekwrobel93 */}
+    Telephone: 07412 290 264
+    <br />
+    Github: https://github.com/piotrekwrobel93
+`
 
 async function sendMail( reciever, template ) {
         const ACCESS_TOKEN = await oAuth2Client.getAccessToken()
