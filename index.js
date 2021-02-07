@@ -33,8 +33,10 @@ const mailTemaplate =  ( name, message, email) => `
 `
 
 const confirmationTemplate = ( name ) =>  `
-    <h1 style="padding: 10px 0">Thank you  <span style="text-transform: uppercase">${name}</span>! I got your message</h1>
+    <img width="100" height="100" src="https://lh3.googleusercontent.com/proxy/g_FbLSiP10bvXVcdCpX_Zesl9_6Q5QHQw87Q4Ktm7jO3vnXqnj1DCZ2nzrZQWr2cxmRdV8_YxR2fFjvpgGkTJOXVf20gw145G5yEhMhUgMl35JUv-37yO1nAmH6ekQeMEi3ttuYm9TNfGnjHlgGjx6Au1oqHaRQSAqGksZ3W" alt="sparrow" />
     <h4 style="color:  #ff3e00">Peter Sparrow Portfolio</h4>
+    <br />
+    <h1 style="padding: 10px 0">Thank you  <span style="text-transform: uppercase">${name}</span>! I got your message</h1>
     I will be back to you as soon as possible <br />
     If you could let me know how did you like my portfolio <a href="#" style="color: #ff3e00;">here.</a>
     <br />
@@ -42,7 +44,6 @@ const confirmationTemplate = ( name ) =>  `
     <br />
     <br />
     <br />
-    <img width="100" height="100" src="https://lh3.googleusercontent.com/proxy/g_FbLSiP10bvXVcdCpX_Zesl9_6Q5QHQw87Q4Ktm7jO3vnXqnj1DCZ2nzrZQWr2cxmRdV8_YxR2fFjvpgGkTJOXVf20gw145G5yEhMhUgMl35JUv-37yO1nAmH6ekQeMEi3ttuYm9TNfGnjHlgGjx6Au1oqHaRQSAqGksZ3W" alt="sparrow" />
     Website: https://peter-sparrow.dev
     <br />
 
