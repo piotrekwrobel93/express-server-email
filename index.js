@@ -42,6 +42,7 @@ const confirmationTemplate = ( name ) =>  `
     <br />
     <br />
     <br />
+    <img width="100" height="100" src="https://lh3.googleusercontent.com/proxy/g_FbLSiP10bvXVcdCpX_Zesl9_6Q5QHQw87Q4Ktm7jO3vnXqnj1DCZ2nzrZQWr2cxmRdV8_YxR2fFjvpgGkTJOXVf20gw145G5yEhMhUgMl35JUv-37yO1nAmH6ekQeMEi3ttuYm9TNfGnjHlgGjx6Au1oqHaRQSAqGksZ3W" alt="sparrow" />
     Website: https://peter-sparrow.dev
     <br />
 
