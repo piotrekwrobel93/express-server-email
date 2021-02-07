@@ -41,7 +41,6 @@ See you soon!
 <br />
 <h4 style="color:  #ff3e00">Peter Sparrow Portfolio</h4>
     <br />
-    <br />
     Website: https://peter-sparrow.dev
     <br />
 
