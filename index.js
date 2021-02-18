@@ -87,12 +87,19 @@ app.get('/test', (req,res) => res.send("this is test!"))
 
 app.post("/sendMail", ( req, res) => {
     const { name, email, message } = req.body
-    sendMail(process.env.__EMAIL__, mailTemaplate(name, message, email)).then( res => console.log("EMAIL SENT WITH DETAILS --------- [SENT]", res))
-    sendMail(email, confirmationTemplate( name )).then( res => console.log("EMAIL SENT TO CLIENT --------- [SENT]", res))
-    // 
-    res.status(200).send({status:'ok'})
-    // res.status(500).send({status:'error'})
-    // console.log( err )
+    try {
+        let mail1 = sendMail(process.env.__EMAIL__, mailTemaplate(name, message, email)).then( res => console.log("EMAIL SENT WITH DETAILS --------- [SENT]", res))
+        let mail2 = sendMail(email, confirmationTemplate( name )).then( res => console.log("EMAIL SENT TO CLIENT --------- [SENT]", res))
+        // 
+        if (mail1 && mail2) {
+            res.status(200).send({status:'ok'})
+        } else {
+            res.status(500).send({status:'error sending mail'})
+        }
+    } catch (error) {
+        res.status(500).send({status:'error'})
+        console.log( err )
+    }
 })
 
 
