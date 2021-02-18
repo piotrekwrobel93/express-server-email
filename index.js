@@ -76,10 +76,10 @@ async function sendMail( reciever, template ) {
         }
         try {
             const mailResult = await transport.sendMail( mailOptions )
+            return mailResult
         } catch(error) {
             throw new Error(error.message)
         }
-        return mailResult
 }
 
 app.get('/', (req, res) => res.send("hello there :)"))
