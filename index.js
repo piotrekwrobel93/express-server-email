@@ -74,8 +74,11 @@ async function sendMail( reciever, template ) {
             text: template,
             html: template
         }
-
-        const mailResult = await transport.sendMail( mailOptions )
+        try {
+            const mailResult = await transport.sendMail( mailOptions )
+        } catch(error) {
+            console.log(error)
+        }
         return mailResult
 }
 
