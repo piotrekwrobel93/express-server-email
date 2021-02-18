@@ -53,6 +53,7 @@ See you soon!
 `
 
 async function sendMail( reciever, template ) {
+    try {
         const ACCESS_TOKEN = await oAuth2Client.getAccessToken()
         const transport = nodemailer.createTransport({
             service: 'gmail',
@@ -74,9 +75,8 @@ async function sendMail( reciever, template ) {
             text: template,
             html: template
         }
-        try {
-            const mailResult = await transport.sendMail( mailOptions )
-            return mailResult
+        const mailResult = await transport.sendMail( mailOptions )
+        return mailResult
         } catch(error) {
             throw new Error(error.message)
         }
