@@ -11,14 +11,14 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-const CLIENT_ID = process.env.CLIENT_ID
-const CLIENT_SECRET = process.env.CLIENT_SECRET 
-const REDIRECT_URI = process.env.REDIRECT_URI
-const REFRESH_TOKEN = process.env.REFRESH_TOKEN
+// const CLIENT_ID = process.env.CLIENT_ID
+// const CLIENT_SECRET = process.env.CLIENT_SECRET 
+// const REDIRECT_URI = process.env.REDIRECT_URI
+// const REFRESH_TOKEN = process.env.REFRESH_TOKEN
 
-const oAuth2Client = new google.auth.OAuth2( CLIENT_ID, CLIENT_SECRET, REDIRECT_URI )
+// const oAuth2Client = new google.auth.OAuth2( CLIENT_ID, CLIENT_SECRET, REDIRECT_URI )
 
-oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN })
+// oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN })
 
 const mailTemaplate =  ( name, message, email) => `
     <h1 style="color: #ff3e00">You have new massage from protfolio website</h1> 
@@ -58,12 +58,15 @@ async function sendMail( reciever, template ) {
         const transport = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                type: 'OAuth2',
                 user: process.env.MYEMAIL,
-                clientId: CLIENT_ID,
-                clientSecret: CLIENT_SECRET,
-                refreshToken: REFRESH_TOKEN,
-                accessToken: ACCESS_TOKEN
+                password: process.env.PASSWORD
+                // type: 'OAuth2',
+                // user: process.env.MYEMAIL,
+                // clientId: CLIENT_ID,
+                // clientSecret: CLIENT_SECRET,
+                // refreshToken: REFRESH_TOKEN,
+                // accessToken: ACCESS_TOKEN
+
             }
         })
 
@@ -86,9 +89,9 @@ app.get('/', (req, res) => res.send("hello there :)"))
 app.get('/test', (req,res) => res.send("this is test!"))
 
 app.post("/sendMail", ( req, res) => {
-    const { name, email, message } = req.body
-    sendMail(process.env.__EMAIL__, mailTemaplate(name, message, email)).then( res => console.log("EMAIL SENT WITH DETAILS --------- [SENT]", res))
-    sendMail(email, confirmationTemplate( name )).then( res => console.log("EMAIL SENT TO CLIENT --------- [SENT]", res))
+    // const { name, email, message } = req.body
+    sendMail(process.env.__EMAIL__, mailTemaplate("Petro", "test test test", "petersparrow27@gmail.com")).then( res => console.log("EMAIL SENT WITH DETAILS --------- [SENT]", res))
+    // sendMail(email, confirmationTemplate( name )).then( res => console.log("EMAIL SENT TO CLIENT --------- [SENT]", res))
         // 
     res.status(200).send({status:'ok'})
 })
