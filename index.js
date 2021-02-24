@@ -69,8 +69,9 @@ function sendMail( client, template ) {
 
 app.post("/sendMail", ( req, res) => {
     const { name, email, message} = req.body
-    sendMail(req.body.email, templateToClient(name))
-    sendMail(process.env.MYEMAIL, templateToMe(name,email,message))
+    // sendMail(req.body.email, templateToClient(name))
+    // sendMail(process.env.MYEMAIL, templateToMe(name, email, message))
+    sendMail("piotrekwrobel93@gmail.com", templateToMe("Piwko", "mojemail@gmail.com", "this is message ffs!"))
     res.send({isOK: true, reciever: req.body.email}).status(200)
 })
 
