@@ -27,7 +27,7 @@ const templateToClient = () => `
         <h1 style="font-size: 3em; font-weight: normal; color: #222222 !important;">Thank you!</h1>
         <p style="color: #222222 !important">I will get back to you very soon!</p>
         <a style="color: #ffffff !important; background-color: #ff3e00;padding: 10px 20px; border: none;
-            border-radius: 5px;-webkit-border-radius: 5px;-o-border-radius: 5px;-moz-border-radius: 5px;
+            border-radius: 5px;-webkit-border-radius: 5px;-o-border-radius: 5px;-moz-border-radius: 5px;margin-top: 1rem;
         " href="https://sparrow-test.netlify.app/">Visit Website</a>
         <p style="margin-top:5rem; font-style: italic; color: #999">Peter Sparrow - Portfolio</p>
 </body>
