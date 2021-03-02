@@ -1,7 +1,6 @@
 import express from 'express'
 import cors from 'cors'
 import nodemailer from 'nodemailer'
-import { google } from 'googleapis'
 import dotenv from 'dotenv'
 dotenv.config()
 // 
@@ -13,31 +12,36 @@ app.use(express.json())
 
 
 
-const templateToClient = (name) => `
-    <div>
-        <h1>Thank you ${name}</h1>
-        <br />
-        <h4>I recieved your message and will get back to you ASAP.</h4>
-        <h4>Please review my website so i know what other thinks about it and how to improve it</h4>
-        <h4>https://sparrow-test/review</h4>
-        <br />
-        <h5>Details:</h5>
-        <p>Name: Piotr Wrobel (Peter Sparrow)</p>
-        <p>Contact Number: 07521 220 446</p>
-        <p>Email: <span>${process.env.MYEMAIL}</span></p>
-        <p>GitHub: https://github.com/piotrekwrobel93</p>
-        <p>Website: https://sparrow-test.netlify.app</p>
-    </div>
-    `
+const templateToClient = () => `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Peter Sparrow - Email Confirmation</title>
+</head>
+<body bgcolor="FFFFFF" style="text-align: center; font-family: 'Poppins', sans-serif; color: #222222;">
+        <h1 style="font-size: 3em; font-weight: normal; color: #222222 !important;">Thank you!</h1>
+        <p style="color: #222222 !important">I will get back to you very soon!</p>
+        <button style="color: #ffffff !important; background-color: #ff3e00;padding: 10px 20px; border: none;
+            border-radius: 5px;-webkit-border-radius: 5px;-o-border-radius: 5px;-moz-border-radius: 5px;
+        ">Visit Website</button>
+        <p style="margin-top:5rem; font-style: italic; color: #999">Peter Sparrow - Portfolio</p>
+</body>
+</html>
+`
 const templateToMe = (name, email, message) => `
     <div>
         <h1>You have new message from ${name}</h1>
         <br />
-        <pre style="background-color: #ccc; color: #000;padding: 10px;">
+        <pre style="color: #000 !important;padding: 10px;">
             ${message}
         </pre>
         <br />
-        <h5>Details:</h5>
+        <h3>Details</h3>
         <p>Name: ${name}</p>
         <p>Email: <span>${email}</span></p>
     </div>
@@ -47,7 +51,7 @@ function sendMail( client, template ) {
         service: 'gmail',
         auth: {
             user: process.env.MYEMAIL,
-            pass: 'konradek2'
+            pass: process.env.PASSWORD
         }
     })
 
@@ -69,10 +73,9 @@ function sendMail( client, template ) {
 
 app.post("/sendMail", ( req, res) => {
     const { name, email, message} = req.body
-    // sendMail(req.body.email, templateToClient(name))
-    // sendMail(process.env.MYEMAIL, templateToMe(name, email, message))
-    sendMail("piotrekwrobel93@gmail.com", templateToMe("Piwko", "mojemail@gmail.com", "this is message ffs!"))
-    res.send({isOK: true, reciever: req.body.email}).status(200)
+    sendMail(email, templateToClient())
+    sendMail(process.env.MYEMAIL, templateToMe(name, email, message))
+    res.send({sended: true, reciever: email}).status(200)
 })
 
 
